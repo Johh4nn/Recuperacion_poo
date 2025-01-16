@@ -5,35 +5,67 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class formAdministrador {
-    private JTabbedPane tabbedPane1;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JButton registrarButton;
-    private JTextField textField5;
-    private JPasswordField passwordField1;
+    private JTabbedPane agregarUsuario;
+    private JTextField lblNombre;
+    private JTextField lblDescripcion;
+    private JTextField lblPrecio;
+    private JTextField lblStock;
+    private JButton registrarProducto;
+    private JTextField lblNombreUsuario;
+    private JPasswordField lblPassword;
     private JComboBox comboBox1;
-    private JButton registrarButton1;
+    private JButton registrarUsuario_administrador;
     private JList list1;
     private JList list2;
     private  JFrame frame;
     private JPanel formAdminis;
     private JPanel ventAgregarProd;
+    private JPanel agregarUsuarios;
+    private JPanel ListarProductos;
+    private JPanel ListarUsuarios;
     private  JFrame loginFrame;
 
     public formAdministrador(JFrame loginFrame){
         this.loginFrame = loginFrame;
-        registrarButton.addActionListener(new ActionListener() {
+        registrarProducto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String nombre = lblNombre.getText();
+                String descripcion = lblDescripcion.getText();
+                double precio = Double.parseDouble(lblPrecio.getText());
+                int stock = Integer.parseInt(lblStock.getText());
+
+                // Llamamos al método registrarProducto
+                boolean registrado = conexion.registrarProducto(nombre, descripcion, precio, stock);
+
+                if (registrado) {
+                    JOptionPane.showMessageDialog(frame, "Producto registrado exitosamente");
+                    // Llenamos nuevamente la lista de productos
+                    list1.setModel(conexion.obtenerProductos());
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Error al registrar el producto");
+                }
 
             }
         });
 
-        registrarButton1.addActionListener(new ActionListener() {
+        registrarUsuario_administrador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String nombreUsuario = lblNombreUsuario.getText();
+                String password = new String(lblPassword.getPassword());
+                String rol = (String) comboBox1.getSelectedItem();
+
+                // Llamamos al método registrarUsuario
+                boolean registrado = conexion.registrarUsuario(nombreUsuario, password, rol);
+
+                if (registrado) {
+                    JOptionPane.showMessageDialog(frame, "Usuario registrado exitosamente");
+                    // Llenamos nuevamente la lista de usuarios
+                    list2.setModel(conexion.obtenerUsuarios());
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Error al registrar el usuario");
+                }
 
             }
         });
@@ -53,6 +85,9 @@ public class formAdministrador {
         });
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
+}
 
 
