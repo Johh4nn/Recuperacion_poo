@@ -10,6 +10,8 @@ public class form1 {
     private JPanel formLogin;
     private JFrame frame;
 
+
+
     public void ventanaLogin(){
         frame = new JFrame("Login");
         frame.setContentPane(formLogin);
