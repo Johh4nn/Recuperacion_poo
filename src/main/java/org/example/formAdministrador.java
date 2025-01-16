@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class formAdministrador {
-    private JTabbedPane ventListPr;
+    private JTabbedPane tabbedPane1;
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -20,8 +20,6 @@ public class formAdministrador {
     private  JFrame frame;
     private JPanel formAdminis;
     private JPanel ventAgregarProd;
-    private JPanel ventListUsuario;
-    private JPanel ventListProductos;
     private  JFrame loginFrame;
 
     public formAdministrador(JFrame loginFrame){
@@ -32,6 +30,7 @@ public class formAdministrador {
 
             }
         });
+
         registrarButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
